@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.2",
@@ -38,7 +39,7 @@
     "eslint-plugin-prettier": "^5.4.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "husky": "^9.1.7",
+    "husky": "^8.0.0",
     "prettier": "^3.5.3",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.2.9",
