@@ -1,13 +1,13 @@
-import { createClient } from "@/utils/supabase/server"
-import { NextResponse } from "next/server"
+import { createClient } from '@/utils/supabase/server';
+import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
-  const requestUrl = new URL(request.url)
-  const supabase = await createClient()
+  const requestUrl = new URL(request.url);
+  const supabase = await createClient();
 
-  await supabase.auth.signOut()
+  await supabase.auth.signOut();
 
   return NextResponse.redirect(`${requestUrl.origin}/`, {
     status: 302,
-  })
+  });
 }

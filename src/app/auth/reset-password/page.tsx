@@ -1,62 +1,68 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { motion } from "framer-motion"
-import { z } from "zod"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Lock, AlertCircle, Loader2, CheckCircle2 } from "lucide-react"
-import { createClient } from "@/utils/supabase/client"
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Lock, AlertCircle, Loader2, CheckCircle2 } from 'lucide-react';
+import { createClient } from '@/utils/supabase/client';
 
 const resetPasswordSchema = z
   .object({
-    password: z.string().min(6, { message: "Password must be at least 6 characters" }),
-    confirmPassword: z.string().min(6, { message: "Password must be at least 6 characters" }),
+    password: z
+      .string()
+      .min(6, { message: 'Password must be at least 6 characters' }),
+    confirmPassword: z
+      .string()
+      .min(6, { message: 'Password must be at least 6 characters' }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
-    path: ["confirmPassword"],
-  })
+    path: ['confirmPassword'],
+  });
 
-type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>
+type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;
 
 export default function ResetPasswordPage() {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [isSuccess, setIsSuccess] = useState(false)
-  const supabase = createClient()
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const supabase = createClient();
 
   const form = useForm<ResetPasswordFormValues>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
-      password: "",
-      confirmPassword: "",
+      password: '',
+      confirmPassword: '',
     },
-  })
+  });
 
   async function onSubmit(values: ResetPasswordFormValues) {
-    setIsLoading(true)
-    setError(null)
+    setIsLoading(true);
+    setError(null);
 
     try {
       const { error } = await supabase.auth.updateUser({
         password: values.password,
-      })
+      });
 
-      if (error) throw error
+      if (error) throw error;
 
-      setIsSuccess(true)
+      setIsSuccess(true);
 
       // Redirect to login after a short delay
       setTimeout(() => {
-        router.push("/")
-      }, 2000)
+        router.push('/');
+      }, 2000);
     } catch (err: any) {
-      setError(err.message || "An error occurred while resetting your password")
+      setError(
+        err.message || 'An error occurred while resetting your password'
+      );
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }
 
@@ -70,7 +76,9 @@ export default function ResetPasswordPage() {
       >
         {!isSuccess ? (
           <>
-            <h2 className="text-xl font-semibold mb-4 text-center">Reset Your Password</h2>
+            <h2 className="text-xl font-semibold mb-4 text-center">
+              Reset Your Password
+            </h2>
 
             {error && (
               <div className="mb-4 p-3 rounded-md bg-red-500/10 border border-red-500/30 text-red-400 flex gap-2 items-start">
@@ -84,14 +92,16 @@ export default function ResetPasswordPage() {
                 <div className="relative">
                   <Lock className="absolute left-3 top-2.5 h-5 w-5 text-white/70" />
                   <input
-                    {...form.register("password")}
+                    {...form.register('password')}
                     type="password"
                     placeholder="New Password"
                     className="w-full pl-10 p-2 rounded-md bg-white/10 border border-white/20 text-white"
                   />
                 </div>
                 {form.formState.errors.password && (
-                  <p className="text-red-400 text-xs mt-1">{form.formState.errors.password.message}</p>
+                  <p className="text-red-400 text-xs mt-1">
+                    {form.formState.errors.password.message}
+                  </p>
                 )}
               </div>
 
@@ -99,14 +109,16 @@ export default function ResetPasswordPage() {
                 <div className="relative">
                   <Lock className="absolute left-3 top-2.5 h-5 w-5 text-white/70" />
                   <input
-                    {...form.register("confirmPassword")}
+                    {...form.register('confirmPassword')}
                     type="password"
                     placeholder="Confirm New Password"
                     className="w-full pl-10 p-2 rounded-md bg-white/10 border border-white/20 text-white"
                   />
                 </div>
                 {form.formState.errors.confirmPassword && (
-                  <p className="text-red-400 text-xs mt-1">{form.formState.errors.confirmPassword.message}</p>
+                  <p className="text-red-400 text-xs mt-1">
+                    {form.formState.errors.confirmPassword.message}
+                  </p>
                 )}
               </div>
 
@@ -123,7 +135,7 @@ export default function ResetPasswordPage() {
                     Resetting...
                   </>
                 ) : (
-                  "Reset Password"
+                  'Reset Password'
                 )}
               </motion.button>
             </form>
@@ -133,18 +145,22 @@ export default function ResetPasswordPage() {
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 200, damping: 10 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 10 }}
               className="h-12 w-12 rounded-full bg-green-500/20 mx-auto mb-4 flex items-center justify-center"
             >
               <CheckCircle2 className="h-8 w-8 text-green-500" />
             </motion.div>
-            <h2 className="text-xl font-bold mb-2">Password Reset Successful</h2>
-            <p className="text-white/70 mb-6">Your password has been reset successfully. Redirecting to login...</p>
+            <h2 className="text-xl font-bold mb-2">
+              Password Reset Successful
+            </h2>
+            <p className="text-white/70 mb-6">
+              Your password has been reset successfully. Redirecting to login...
+            </p>
             <div className="w-full bg-white/10 h-2 rounded-full overflow-hidden">
               <motion.div
                 className="h-full bg-green-500"
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
+                initial={{ width: '0%' }}
+                animate={{ width: '100%' }}
                 transition={{ duration: 2 }}
               />
             </div>
@@ -152,5 +168,5 @@ export default function ResetPasswordPage() {
         )}
       </motion.div>
     </div>
-  )
+  );
 }

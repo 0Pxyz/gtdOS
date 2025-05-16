@@ -1,33 +1,39 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ThemeSelectorProps {
   themes: {
-    id: string
-    name: string
-    preview: string
-  }[]
-  onSelectTheme: (themeId: string) => void
-  currentThemeId: string
+    id: string;
+    name: string;
+    preview: string;
+  }[];
+  onSelectTheme: (themeId: string) => void;
+  currentThemeId: string;
 }
 
-export default function ThemeSelector({ themes, onSelectTheme, currentThemeId }: ThemeSelectorProps) {
-  const [currentIndex, setCurrentIndex] = useState(themes.findIndex((theme) => theme.id === currentThemeId) || 0)
+export default function ThemeSelector({
+  themes,
+  onSelectTheme,
+  currentThemeId,
+}: ThemeSelectorProps) {
+  const [currentIndex, setCurrentIndex] = useState(
+    themes.findIndex((theme) => theme.id === currentThemeId) || 0
+  );
 
   const nextTheme = () => {
-    const newIndex = (currentIndex + 1) % themes.length
-    setCurrentIndex(newIndex)
-    onSelectTheme(themes[newIndex].id)
-  }
+    const newIndex = (currentIndex + 1) % themes.length;
+    setCurrentIndex(newIndex);
+    onSelectTheme(themes[newIndex].id);
+  };
 
   const prevTheme = () => {
-    const newIndex = (currentIndex - 1 + themes.length) % themes.length
-    setCurrentIndex(newIndex)
-    onSelectTheme(themes[newIndex].id)
-  }
+    const newIndex = (currentIndex - 1 + themes.length) % themes.length;
+    setCurrentIndex(newIndex);
+    onSelectTheme(themes[newIndex].id);
+  };
 
   return (
     <div className="flex items-center gap-2">
@@ -43,5 +49,5 @@ export default function ThemeSelector({ themes, onSelectTheme, currentThemeId }:
         <ChevronRight className="h-4 w-4" />
       </Button>
     </div>
-  )
+  );
 }
