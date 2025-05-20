@@ -20,11 +20,11 @@ import {
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { createClient } from '@/utils/supabase/client';
-
-import TimeDisplay from './TimeDisplay';
+import { TimeDisplay } from './TimeDisplay';
 
 // Replace the time display with:
-<TimeDisplay currentTheme={useTheme} />
+<TimeDisplay currentTheme={useTheme} />;
+
 
 // Form validation schemas
 const loginSchema = z.object({
@@ -60,7 +60,7 @@ type ResetFormValues = z.infer<typeof resetSchema>;
 // Theme definitions
 const themes = [
   {
-     id: 'girl',
+    id: 'girl',
     name: 'Cyberpunk Girl',
     backgroundImage: '/backgrounds/bgsddm.gif',
     fontClass: 'font-mono',

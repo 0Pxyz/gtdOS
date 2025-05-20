@@ -23,3 +23,5 @@ export default function TimeDisplay({ currentTheme }: { currentTheme: any }) {
     </time>
   );
 }
+
+export { TimeDisplay };

@@ -129,7 +129,7 @@ function HeroHeader() {
           className={cn(
             'mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12',
             isScrolled &&
-              'bg-background/80 max-w-4xl rounded-2xl border backdrop-blur-lg lg:px-5 shadow-md'
+            'bg-background/80 max-w-4xl rounded-2xl border backdrop-blur-lg lg:px-5 shadow-md'
           )}
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -254,7 +254,7 @@ function HeroHeader() {
                   </Link>
                 </Button>
                 <Button size="sm" asChild>
-                  <Link href="/auth/signup" className="flex items-center gap-2">
+                  <Link href="/auth/login" className="flex items-center gap-2">
                     Sign Up
                   </Link>
                 </Button>
@@ -372,7 +372,7 @@ function HeroSection() {
                       className="relative rounded-xl px-8 py-6 text-base font-medium bg-background text-foreground hover:text-background hover:bg-primary border border-primary/20 transition-all duration-300 flex items-center gap-2"
                       asChild
                     >
-                      <Link href="/auth/signup">
+                      <Link href="/auth/login">
                         <span>Start Free Trial</span>
                         <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                       </Link>
@@ -657,7 +657,7 @@ export default function GTDXPLanding() {
                       className="w-full bg-primary hover:bg-primary/80"
                       asChild
                     >
-                      <Link href="/auth/signup">Buy Now</Link>
+                      <Link href="/auth/login">Buy Now</Link>
                     </Button>
                   </div>
                   <div className="flex-1">
@@ -689,7 +689,7 @@ export default function GTDXPLanding() {
                       className="w-full hover:bg-primary/10 hover:text-primary hover:border-primary/30"
                       asChild
                     >
-                      <Link href="/auth/signup">Start Free Trial</Link>
+                      <Link href="/auth/login">Start Free Trial</Link>
                     </Button>
                   </div>
                 </div>
@@ -727,17 +727,17 @@ export default function GTDXPLanding() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 z-10 pointer-events-none" />
                 <div className="aspect-video bg-muted">
                   <YouTube
-                    videoId="YOUR_YOUTUBE_VIDEO_ID"
-                    className="w-full h-full"
+                    videoId="dQw4w9WgXcQ"
                     opts={{
-                      height: '100%',
                       width: '100%',
+                      height: '100%',
                       playerVars: {
                         autoplay: 0,
                         modestbranding: 1,
                         rel: 0,
                       },
                     }}
+                    className="w-full h-full"
                   />
                 </div>
               </motion.div>
@@ -770,7 +770,7 @@ export default function GTDXPLanding() {
                   className="relative rounded-xl flex items-center gap-2 bg-primary hover:bg-primary/80 transition-all duration-300"
                   asChild
                 >
-                  <Link href="/auth/signup">
+                  <Link href="/auth/login">
                     <span>Get Started Now</span>
                     <ArrowRight className="h-5 w-5" />
                   </Link>
